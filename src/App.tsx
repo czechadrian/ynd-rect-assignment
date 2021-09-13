@@ -1,7 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { Button, Input } from 'antd';
+import 'antd/dist/antd.css';
+import styled from 'styled-components';
 
 import { getUsers } from './app/actions/users';
+import { TButtonSize, TButtonTypes } from './app/helpers';
 
 function App() {
   const dispatch = useDispatch();
@@ -12,11 +16,61 @@ function App() {
   };
 
   return (
-    <main>
-      <input onChange={(val) => searchHandler(val.target.value)} />
-      <button onClick={() => dispatch(getUsers(search))}>Search</button>
-    </main>
+    <MainWrapper>
+      <Layout>
+        <InputStyled
+          size={TButtonSize.LARGE}
+          placeholder="Enter username"
+          onChange={(val) => searchHandler(val.target.value)}
+        />
+        <ButtonStyled
+          size={TButtonSize.LARGE}
+          type={TButtonTypes.PRIMARY}
+          onClick={() => dispatch(getUsers(search))}
+        >
+          Search
+        </ButtonStyled>
+      </Layout>
+    </MainWrapper>
   );
 }
+
+const MainWrapper = styled.main`
+  background-color: grey;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+`;
+
+const Layout = styled.div`
+  width: 480px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  @media (max-width: 800px) {
+    height: 700px;
+  }
+  @media (min-width: 801px) {
+    height: 95%;
+  }
+`;
+
+const InputStyled = styled(Input)`
+  width: 100%;
+  background-color: #e8e8e8;
+  margin-bottom: 1rem;
+  color: #707070;
+  :: placeholder {
+    color: #707070;
+  }
+`;
+
+const ButtonStyled = styled(Button)`
+  width: 100%;
+`;
 
 export default App;
