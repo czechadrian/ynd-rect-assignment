@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
+
 import { usersReducer as users } from './users';
 import { TFetchingStatus } from '../helpers';
+import { TGetUsersResponse } from '../../api-wrapper/types';
 
 export interface TRootState {
-  users: { name: string; fetchingStatus: TFetchingStatus };
+  users: { users: TGetUsersResponse | null; fetchingStatus: TFetchingStatus };
 }
 
 const rootReducer = () =>

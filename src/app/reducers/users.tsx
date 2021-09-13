@@ -8,14 +8,15 @@ import {
   TFetchUsersActions
 } from '../actions/users';
 import { TFetchingStatus } from '../helpers';
+import { TGetUsersResponse } from '../../api-wrapper/types';
 
 type TUsers = {
-  name: string;
+  users: TGetUsersResponse | null;
   fetchingStatus: TFetchingStatus;
 };
 
 export const initialState: TUsers = {
-  name: '',
+  users: null,
   fetchingStatus: TFetchingStatus.Defined
 };
 
@@ -30,7 +31,7 @@ export const usersReducer = createReducer<TUsers, TFetchUsersActions>(
   .handleAction(fetchUsersSuccessAction, (state, action) =>
     produce(state, (draftState) => {
       draftState.fetchingStatus = TFetchingStatus.Success;
-      draftState.name = action.payload;
+      draftState.users = action.payload;
     })
   )
   .handleAction(fetchUsersFailureAction, (state) =>
