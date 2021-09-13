@@ -1,19 +1,19 @@
-import React from "react";
-import {Provider} from "react-redux";
-import ReactDOM from "react-dom";
+import React from 'react';
+import { Provider } from 'react-redux';
+import ReactDOM from 'react-dom';
 
-import App from "./App";
-import configureStore from "./configureStore";
+import App from './App';
+import configureStore from './configureStore';
 
-const rootEl = document.getElementById("root");
+const rootEl = document.getElementById('root');
 
 const store = configureStore();
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App/>
-    </Provider>,
-    rootEl
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  rootEl
 );
 
 // If you want to start measuring performance in your app, pass a function
