@@ -17,5 +17,10 @@ export const getUsersFetchingStatusSelector = createSelector(
 
 export const getUserRepositoriesSelector = createSelector(
   _getRepositories,
-  (repositories) => repositories
+  (repositories) => repositories.repositories
+);
+
+export const getUserReposFetchingStatusSelector = createSelector(
+  _getRepositories,
+  (repositories) => repositories.fetchingStatus
 );
