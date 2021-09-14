@@ -8,19 +8,19 @@ import {
   TFetchUsersActions
 } from '../actions/users';
 import { TFetchingStatus } from '../helpers';
-import { TGetUsersResponse } from '../../api-wrapper/types';
+import { TUsers } from '../../api-wrapper/types';
 
-type TUsers = {
-  users: TGetUsersResponse | null;
+type TPayloadUsers = {
+  users: TUsers;
   fetchingStatus: TFetchingStatus;
 };
 
-export const initialState: TUsers = {
-  users: null,
+export const initialState: TPayloadUsers = {
+  users: [],
   fetchingStatus: TFetchingStatus.Defined
 };
 
-export const usersReducer = createReducer<TUsers, TFetchUsersActions>(
+export const usersReducer = createReducer<TPayloadUsers, TFetchUsersActions>(
   initialState
 )
   .handleAction(fetchUsersInitAction, (state) =>

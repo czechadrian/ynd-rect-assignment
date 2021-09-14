@@ -1,19 +1,30 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, Input } from 'antd';
 import 'antd/dist/antd.css';
 import styled from 'styled-components';
 
 import { getUsers } from './app/actions/users';
-import { TButtonSize, TButtonTypes } from './app/helpers';
+import { TButtonSize, TButtonTypes, TFetchingStatus } from './app/helpers';
+import {
+  getUsersFetchingStatusSelector,
+  getUsersSelector
+} from './app/screens/selectors';
+import UserList from './app/components/UserList';
 
 function App() {
   const dispatch = useDispatch();
+  const users = useSelector(getUsersSelector);
+  const usersFetchingStatus = useSelector(getUsersFetchingStatusSelector);
   const [search, setSearch] = React.useState('');
 
   const searchHandler = (search: string) => {
     setSearch(search);
   };
+
+  const displayShowingResultsLabel = () =>
+    usersFetchingStatus === TFetchingStatus.Success &&
+    "Showing users for '" + search + "'";
 
   return (
     <MainWrapper>
@@ -30,6 +41,12 @@ function App() {
         >
           Search
         </ButtonStyled>
+        <ShowingResultsStyled>
+          {displayShowingResultsLabel()}
+        </ShowingResultsStyled>
+        {usersFetchingStatus === TFetchingStatus.Success && (
+          <UserList users={users} />
+        )}
       </Layout>
     </MainWrapper>
   );
@@ -71,6 +88,11 @@ const InputStyled = styled(Input)`
 
 const ButtonStyled = styled(Button)`
   width: 100%;
+`;
+const ShowingResultsStyled = styled.span`
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1.25rem;
 `;
 
 export default App;

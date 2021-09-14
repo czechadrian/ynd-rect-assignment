@@ -3,12 +3,12 @@ import { Action, ActionType, createAction } from 'typesafe-actions';
 
 import { TRootState } from '../reducers';
 import { getAllUsers } from '../../api-wrapper/getUsers';
-import { TGetUsersResponse } from '../../api-wrapper/types';
+import { TUsers } from '../../api-wrapper/types';
 
 export const fetchUsersInitAction = createAction('users/FETCH_INIT')();
 export const fetchUsersSuccessAction = createAction(
   'users/FETCH_SUCCESS'
-)<TGetUsersResponse>();
+)<TUsers>();
 export const fetchUsersFailureAction = createAction('users/FETCH_FAILURE')();
 
 export type TFetchUsersInitAction = ActionType<typeof fetchUsersInitAction>;
@@ -34,7 +34,7 @@ export const getUsers: TUsersThunkActionType =
     dispatch(fetchUsersInitAction());
     return getAllUsers(search)
       .then((payload) => {
-        return dispatch(fetchUsersSuccessAction(payload));
+        return dispatch(fetchUsersSuccessAction(payload.items));
       })
       .catch(() => dispatch(fetchUsersFailureAction()));
   };

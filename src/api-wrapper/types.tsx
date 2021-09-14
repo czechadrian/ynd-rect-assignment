@@ -1,4 +1,4 @@
-export type TGetUsersResponse = {
+type TItems = Array<{
   login: string;
   id: number;
   node_id: string;
@@ -31,4 +31,12 @@ export type TGetUsersResponse = {
   following: number;
   created_at: string;
   updated_at: string;
+}>;
+
+export type TGetUsersResponse = {
+  incomplete_results: boolean;
+  total_count: number;
+  items: TItems;
 };
+
+export type TUsers = TItems;
