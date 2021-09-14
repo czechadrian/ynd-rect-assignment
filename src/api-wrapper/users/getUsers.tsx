@@ -1,5 +1,5 @@
-import { apiGet, createUrl } from './apiCall';
-import { TGetUsersResponse } from './types';
+import { apiGet, createUrl } from '../apiCall';
+import { TGetUsersResponse } from '../types';
 
 export const getAllUsers = async (
   payload?: string

@@ -1,8 +1,11 @@
 import React from 'react';
-import { TUsers } from '../../api-wrapper/types';
 import { Collapse } from 'antd';
-import _ from 'lodash';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { TUsers } from '../../api-wrapper/types';
+import { getUserRepos } from '../actions/userRepos';
+import { getUserRepositoriesSelector } from '../../selectors';
 
 const { Panel } = Collapse;
 
@@ -10,24 +13,26 @@ type TUserList = {
   users: TUsers;
 };
 
-const UserList = (props: TUserList) => {
+const UserList: React.FC<TUserList> = (props) => {
   const { users } = props;
-
-  const firstKey = _.get(users, '[0].id');
+  const dispatch = useDispatch();
+  const repositories = useSelector(getUserRepositoriesSelector);
 
   return (
-    <CollapseStyled
-      defaultActiveKey={firstKey}
-      onChange={(e) => console.log(e)}
-    >
+    <CollapseStyled accordion onChange={(user) => dispatch(getUserRepos(user))}>
       {users.map((user) => (
-        <Panel header={user.login} key={user.id}>
-          <p>{user.login}</p>
-        </Panel>
+        <PanelStyled header={user.login} key={user.login}>
+          <div>
+            <></>
+            <p></p>
+          </div>
+        </PanelStyled>
       ))}
     </CollapseStyled>
   );
 };
+
+const PanelStyled = styled(Panel)``;
 
 const CollapseStyled = styled(Collapse)`
   margin-top: 1rem;

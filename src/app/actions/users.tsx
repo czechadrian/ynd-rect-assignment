@@ -2,14 +2,16 @@ import { ThunkAction } from 'redux-thunk';
 import { Action, ActionType, createAction } from 'typesafe-actions';
 
 import { TRootState } from '../reducers';
-import { getAllUsers } from '../../api-wrapper/getUsers';
+import { getAllUsers } from '../../api-wrapper/users/getUsers';
 import { TUsers } from '../../api-wrapper/types';
 
-export const fetchUsersInitAction = createAction('users/FETCH_INIT')();
+export const fetchUsersInitAction = createAction('users/GET_USERS_INIT')();
 export const fetchUsersSuccessAction = createAction(
-  'users/FETCH_SUCCESS'
+  'users/GET_USERS_SUCCESS'
 )<TUsers>();
-export const fetchUsersFailureAction = createAction('users/FETCH_FAILURE')();
+export const fetchUsersFailureAction = createAction(
+  'users/GET_USERS_FAILURE'
+)();
 
 export type TFetchUsersInitAction = ActionType<typeof fetchUsersInitAction>;
 export type TFetchUsersSuccessAction = ActionType<
