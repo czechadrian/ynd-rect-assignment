@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { Empty, notification } from 'antd';
+import {Empty, notification, Spin} from 'antd';
+import _ from "lodash";
 import { useDispatch, useSelector } from 'react-redux';
 
 import { TButtonSize, TButtonTypes, TFetchingStatus } from '../helpers';
@@ -16,6 +17,7 @@ import {
   Layout,
   ShowingResultsStyled
 } from './styled';
+import {SpinWrapper} from "../components/styled";
 
 const Users: React.FC = () => {
   const dispatch = useDispatch();
@@ -31,12 +33,12 @@ const Users: React.FC = () => {
     users.length === 0 ? <Empty /> : <UserList users={users} />;
 
   useEffect(() => {
-    if (usersFetchingStatus === TFetchingStatus.Failure)
+    if (_.isEqual(usersFetchingStatus, TFetchingStatus.Failure))
       notification.error({
         message: 'Error',
         description: 'Fetching users data failed.'
       });
-    else if (usersFetchingStatus === TFetchingStatus.Success)
+    else if (_.isEqual(usersFetchingStatus, TFetchingStatus.Success))
       notification.success({
         message: 'Success',
         description: 'Fetching users data succeeded.'
@@ -60,7 +62,11 @@ const Users: React.FC = () => {
       <ShowingResultsStyled>
         {displayShowingResultsLabel(usersFetchingStatus, search)}
       </ShowingResultsStyled>
-      {usersFetchingStatus === TFetchingStatus.Success && displayData()}
+      {_.isEqual(usersFetchingStatus, TFetchingStatus.Success) && displayData()}
+      {_.isEqual(usersFetchingStatus, TFetchingStatus.Initial) && (
+          <SpinWrapper>
+            <Spin size="large" />
+          </SpinWrapper>)}
     </Layout>
   );
 };
