@@ -1,5 +1,5 @@
 {
-  "homepage": "http://czechadrian.github.io/ynd_rect_assignment",
+  "homepage": "https://czechadrian.github.io/ynd-rect-assignment",
   "name": "ynd_rect_assignment",
   "version": "0.1.0",
   "private": true,
@@ -47,7 +47,7 @@
     "prettier-format": "prettier --config .prettierrc 'src/**/*.@(jsx|js|tsx|ts)' --write",
     "coverage": "react-scripts test --coverage",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -b gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
