@@ -11,6 +11,7 @@ export const apiGet = async <RES,>(
   });
   return data;
 };
+
 export const createUrl = (
   queryUrl: string,
   queryParams = {},

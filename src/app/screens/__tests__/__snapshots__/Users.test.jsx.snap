@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Users selected comments component test 1`] = `
+.c0 {
+  width: 480px;
+  padding: 1rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background-color: white;
+}
+
+.c1 {
+  width: 100%;
+  background-color: #e8e8e8;
+  margin-bottom: 1rem;
+  color: #707070;
+}
+
+.c1::placeholder {
+  color: #707070;
+}
+
+.c2 {
+  width: 100%;
+}
+
+.c3 {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+}
+
+@media (max-width:800px) {
+  .c0 {
+    height: 700px;
+  }
+}
+
+@media (min-width:801px) {
+  .c0 {
+    height: 95%;
+  }
+}
+
+<div
+  className="c0"
+>
+  <input
+    className="ant-input ant-input-lg c1"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    placeholder="Enter username"
+    type="text"
+    value=""
+  />
+  <button
+    className="ant-btn ant-btn-primary ant-btn-lg c2"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      Search
+    </span>
+  </button>
+  <span
+    className="c3"
+  />
+</div>
+`;

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import {Empty, notification, Spin} from 'antd';
-import _ from "lodash";
+import { Empty, notification, Spin } from 'antd';
+import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { TButtonSize, TButtonTypes, TFetchingStatus } from '../helpers';
@@ -17,7 +17,7 @@ import {
   Layout,
   ShowingResultsStyled
 } from './styled';
-import {SpinWrapper} from "../components/styled";
+import { SpinWrapper } from '../components/styled';
 
 const Users: React.FC = () => {
   const dispatch = useDispatch();
@@ -64,9 +64,10 @@ const Users: React.FC = () => {
       </ShowingResultsStyled>
       {_.isEqual(usersFetchingStatus, TFetchingStatus.Success) && displayData()}
       {_.isEqual(usersFetchingStatus, TFetchingStatus.Initial) && (
-          <SpinWrapper>
-            <Spin size="large" />
-          </SpinWrapper>)}
+        <SpinWrapper>
+          <Spin size="large" />
+        </SpinWrapper>
+      )}
     </Layout>
   );
 };

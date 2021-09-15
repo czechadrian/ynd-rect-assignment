@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import {Collapse, Divider} from 'antd';
+import { Collapse, Divider } from 'antd';
 
 const { Panel } = Collapse;
-
 
 export const NoDescriptionStyled = styled.p`
   color: gray;

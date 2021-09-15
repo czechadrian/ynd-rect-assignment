@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Empty, Spin } from 'antd';
+import { Empty, Spin } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { StarFilled } from '@ant-design/icons';
 import _ from 'lodash';
@@ -12,8 +12,10 @@ import {
 } from '../../selectors';
 import { TFetchingStatus } from '../helpers';
 import {
-  CollapseStyled, DividerStyled,
-  HeaderStyled, NoDescriptionStyled,
+  CollapseStyled,
+  DividerStyled,
+  HeaderStyled,
+  NoDescriptionStyled,
   PanelStyled,
   ReposWrapper,
   RepoWrapper,
@@ -52,7 +54,7 @@ const UserList: React.FC<TUserList> = (props) => {
             ) : (
               repositories.map(
                 ({ name, stargazers_count, description }, index) => (
-                  <RepoWrapper>
+                  <RepoWrapper key={index}>
                     <HeaderStyled>
                       <p>{name}</p>
                       <StarsWrapper>
@@ -61,7 +63,9 @@ const UserList: React.FC<TUserList> = (props) => {
                       </StarsWrapper>
                     </HeaderStyled>
                     {displayDescription(description)}
-                    {_.isEqual(index, repositories.length - 1) && <DividerStyled />}
+                    {!_.isEqual(index, repositories.length - 1) && (
+                      <DividerStyled />
+                    )}
                   </RepoWrapper>
                 )
               )
@@ -77,6 +81,5 @@ const UserList: React.FC<TUserList> = (props) => {
     </CollapseStyled>
   );
 };
-
 
 export default UserList;
